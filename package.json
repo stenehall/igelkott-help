@@ -1,0 +1,17 @@
+{
+  "name": "igelkott-help",
+  "description": "A very simple help plugin for Igelkott",
+  "version": "0.1.0",
+  "main": "igelkott-help.js",
+  "dependencies": {
+    "colors": "*"
+  },
+  "devDependencies": {
+    "chai": "~1.4.2",
+    "mocha": "1.3.x",
+    "igelkott": "*"
+  },
+  "scripts": {
+    "test": "mocha -R spec --recursive"
+  }
+}
