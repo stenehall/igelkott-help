@@ -32,7 +32,7 @@ describe('Help', function() {
         "foo": {
           "default": "bar"
         }
-      }
+      };
     };
   });
 
