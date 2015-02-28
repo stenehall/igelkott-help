@@ -8,21 +8,15 @@ var Help = function Help() {
 };
 
 Help.prototype.trigger = function trigger(message) {
-
   var args = message.parameters[1].split(' ');
-
   args.shift(); // Remove !help
-
   var path = args.join('->');
 
   if (args.length === 0) {
-
     var names = [];
 
-    for (var key in this.igelkott.plugin.plugins)
-    {
-      if (this.igelkott.plugin.plugins[key].name !== undefined)
-      {
+    for (var key in this.igelkott.plugin.plugins) {
+      if (this.igelkott.plugin.plugins[key].name !== undefined) {
         names.push(this.igelkott.plugin.plugins[key].name);
       }
     }
@@ -45,7 +39,7 @@ Help.prototype.trigger = function trigger(message) {
         }.bind(this));
       }
 
-      if(helpText !== undefined && helpText.default !== undefined) {
+      if (helpText !== undefined && helpText.default !== undefined) {
         message.parameters[1] = 'Help for '+path+': '+helpText.default;
       } else {
         message.parameters[1] = 'No help for '+path;
@@ -59,3 +53,4 @@ Help.prototype.trigger = function trigger(message) {
 };
 
 exports.Plugin = Help;
+
