@@ -16,6 +16,8 @@ Help.prototype.trigger = function trigger(message) {
     var names = [];
 
     for (var key in this.igelkott.plugin.plugins) {
+      // We assume that plugins with names also have a help section.
+      // Plugin authors will have to keep this in mind.
       if (this.igelkott.plugin.plugins[key].name !== undefined) {
         names.push(this.igelkott.plugin.plugins[key].name);
       }

@@ -1,9 +1,7 @@
 var assert = require('chai').assert,
 Stream = require('stream'),
 
-Igelkott = require('igelkott'),
-Help = require('../igelkott-help.js').Plugin;
-
+Igelkott = require('igelkott');
 
 describe('Help', function() {
 
@@ -17,13 +15,15 @@ describe('Help', function() {
     s = new Stream.PassThrough({objectMode: true});
 
     config = {
-      core:['privmsg'],
-      plugins: {},
+      trigger: '!',
+      pluginPath: '',
+      plugins: {
+      },
       'adapter': s, 'connect': function() { this.server.emit('connect'); }
     };
-
     igelkott = new Igelkott(config);
-    igelkott.plugin.load('help', {}, Help);
+    igelkott.load('privmsg', {}, require('../node_modules/igelkott/test/fixtures/plugins/igelkott-privmsg.js').Plugin);
+    igelkott.load('help');
 
     TestPluginContructor = function TestPlugin() {
       this.name = 'testplugin';
@@ -38,7 +38,7 @@ describe('Help', function() {
 
   it('Should return list of loaded plugins if no plugin name is pased', function(done) {
     igelkott.once('PRIVMSG', function(message) {
-      assert.equal(message.parameters[1], 'You have the following plugins to play with: privmsg, help');
+      assert.equal(message.parameters[1], 'You have the following plugins to play with: help');
       done();
     });
 
